@@ -2,6 +2,27 @@
   #FONTS
 \*------------------------------------*/
 
+@font-face{
+    font-family: "HK Grotesk Web";
+    font-weight: 200;
+    src: url("../fonts/hkgrotesk-light-webfont.woff2") format("woff2"),
+        url("../fonts/hkgrotesk-light-webfont.woff") format("woff")
+};
+
+@font-face{
+    font-family: "HK Grotesk Web";
+    font-weight: 400;
+    src: url("../fonts/hkgrotesk-regular-webfont.woff2") format("woff2"),
+        url("../fonts/hkgrotesk-regular-webfont.woff") format("woff")
+};
+
+
+@font-face{
+    font-family: "HK Grotesk Web";
+    font-weight: 600;
+    src: url("../fonts/hkgrotesk-medium-webfont.woff2") format("woff2"),
+        url("../fonts/hkgrotesk-medium-webfont.woff") format("woff")
+}
 /*------------------------------------*\
   #GENERIC
 \*------------------------------------*/
@@ -15,11 +36,17 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: #111;
+    font-family: "HK Grotesk Web", Helvetica, arial, sans-serif;
+    color: #202024;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+@media (min-width: 768px) {
+    html{
+        font-size: 20px;
+        line-height: 1.6;
+    }
 }
 
 *,
@@ -36,7 +63,7 @@ html {
  */
 
 ::selection {
-    background: #e85e00;
+    background: #5051DB;
     color: white;
     text-shadow: none;
 }
@@ -66,18 +93,21 @@ h1 {
     font-size: 36px;
     line-height: 48px;
     margin: 0 0 24px;
+    font-weight: 200;
 }
 
 h2 {
     font-size: 32px;
     line-height: 40px;
     margin: 0 0 24px;
+    font-weight: 200;
 }
 
 h3 {
     font-size: 26px;
     line-height: 32px;
     margin: 0 0 24px;
+    font-weight: 200;
 }
 
 h4,
@@ -136,18 +166,18 @@ hr {
 }
 
 a {
-    color: RoyalBlue;
+    color: #5051DB;
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: BlueViolet;
+    color: #3E3EA8;
 }
 
 a:hover,
 a:focus {
-    color: Crimson;
+    color: #3E3EA8;
 }
 
 /*------------------------------------*\
@@ -173,9 +203,15 @@ a:focus {
 }
 
 @media (min-width: 768px) {
+    
     .o-row {
         padding-left: 48px;
         padding-right: 48px;
+    }
+
+    .o-row--md {
+        padding-top: 48px;
+        padding-bottom: 24px;
     }
 
     .o-row--lg {
@@ -194,7 +230,7 @@ a:focus {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 90em; /* 90 * 16px = 1440px */
+    max-width: 56.4; /* 56.4 * 20px = 1228px */
 }
 
 /*
@@ -314,9 +350,163 @@ a:focus {
     align-content: space-between;
 }
 
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+    list-style: none;
+    padding: 0;
+}
+
+/*
+    Objects: section
+    ---
+    Creates vertical whitespace between adjacent sections inside a row
+*/
+
+.o-section {
+    display: flow-root;
+}
+
+.o-section + .o-section {
+    margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+    .o-section--lg + .o-section--lg,
+    .o-section--xl + .o-section--xl {
+        margin-top: 48px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .o-section--xl + .o-section--xl {
+        margin-top: 72px;
+    }
+}
+
+
+
+
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
+
+/*
+    Component: Logo
+    ---
+    Website main logo
+*/
+
+.c-logo {
+    height: 32px;
+}
+
+.c-logo__symbol {
+    height: 100%;
+}
+
+Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .c-logo {
+        height: 40px;
+    }
+}
+
+/*
+    Component: Nav
+    ---
+    Main navigation of the site
+*/
+
+.c-nav {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.c-nav__link {
+    text-decoration: none;
+    font-weight: 400;
+    padding: 8px 0;
+    display: block;
+}
+
+.c-nav--meta{
+    font-size: 16px;
+}
+
+.c-nav__link,
+.c-nav__link:visited,
+.c-nav__link:active {
+    color: #202024;
+}
+
+.c-nav__link--meta,
+.c-nav__link--meta:visited,
+.c-nav__link--meta:active {
+    color: #6C6C75;
+}
+
+.is-selected .c-nav__link,
+.c-nav__link:hover,
+.c-nav__link:focus {
+    color: #5051db;
+}
+
+
+
+/* .c-nav__link--meta:hover,
+.c-nav__link--meta:focus {
+    color: #6051db;
+} */
+
+@media (min-width: 768px) {
+    .c-nav__list {
+        display: flex;
+        gap: 24px;
+    }
+
+    .c-nav__link {
+        display: block;
+        text-decoration: none;
+        font-weight: 400;
+        padding: 8px 0;
+    }
+} 
+
+/*
+    Component: header
+    ---
+    Main header of the website
+*/
+
+.c-header__nav {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .c-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .c-header__nav {
+        display: block;
+    }
+
+    .c-header__logo,
+    .c-header__nav{
+        flex-basis: 50%;
+        flex-grow: 1;
+    }
+}
+
+
+
 
 /*------------------------------------*\
   #UTILITIES
@@ -554,6 +744,17 @@ a:focus {
         flex-basis: calc(100% / 6 * 5) !important;
     }
 }
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+    padding-top: 0 !important; 
+}
+
 
 /*------------------------------------*\
   #MEDIA
